@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="worldline_hosted_checkout_config_provider" xsi:type="object">Worldline\HostedCheckout\Ui\ConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Vault\Model\Ui\TokensConfigProvider">
+        <arguments>
+            <argument name="tokenUiComponentProviders" xsi:type="array">
+                <item name="worldline_hosted_checkout" xsi:type="object">Worldline\HostedCheckout\Ui\TokenUiComponentProvider</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Worldline\HostedCheckout\Model\ReturnRequestProcessor">
+        <arguments>
+            <argument name="addressSaveProcessor" xsi:type="object">Worldline\HostedCheckout\Model\AddressSaveProcessor\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Worldline\HostedCheckout\Plugin\Magento\Checkout\Controller\Cart\Index\SaveAddress">
+        <arguments>
+            <argument name="addressSaveProcessor" xsi:type="object">Worldline\HostedCheckout\Model\AddressSaveProcessor\Proxy</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Checkout\Controller\Index\Index">
+        <plugin name="Cawl_HostedCheckout::save_addresses"
+                type="Worldline\HostedCheckout\Plugin\Magento\Checkout\Controller\Cart\Index\SaveAddress"/>
+    </type>
+</config>

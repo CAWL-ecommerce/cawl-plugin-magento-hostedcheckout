@@ -1,0 +1,26 @@
+{
+    "name": "cawl/module-magento-payment-hosted-checkout",
+    "description": "Cawl Online Payments",
+    "require": {
+        "php": ">=7.3",
+        "ext-json": "*",
+        "cawl/module-magento-payment-core": "1.0.0"
+    },
+    "type": "magento2-module",
+    "version": "1.19.0",
+    "license": ["MIT"],
+    "authors": [
+        {
+            "name": "Cawl Online Payments",
+            "homepage": "https://worldline.com/"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Worldline\\HostedCheckout\\": ""
+        }
+    }
+}
