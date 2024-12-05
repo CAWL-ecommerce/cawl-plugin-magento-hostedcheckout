@@ -12,8 +12,8 @@ To install this solution, you may use
 or install it from the GitHub.
 
 This solution is also included into:
-- [main plugin for adobe commerce](https://github.com/wl-online-payments-direct/plugin-magento)
-- [redirect payments (single payment buttons)](https://github.com/wl-online-payments-direct/plugin-magento-redirect-payments)
+- [main plugin for adobe commerce](https://github.com/Worldline-Plugins/cawl-plugin-magento)
+- [redirect payments (single payment buttons)](https://github.com/Worldline-Plugins/cawl-plugin-magento-redirect-payments)
 
 ### Change log:
 
