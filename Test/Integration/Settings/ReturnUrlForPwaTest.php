@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Test\Integration\Settings;
+namespace Cawl\HostedCheckout\Test\Integration\Settings;
 
 use Magento\Framework\App\Area;
 use Magento\Quote\Api\Data\CartInterface;
 use Magento\TestFramework\Helper\Bootstrap;
 use Magento\Framework\App\State;
 use PHPUnit\Framework\TestCase;
-use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\SpecificInputDataBuilder;
-use Worldline\HostedCheckout\Ui\ConfigProvider;
-use Worldline\PaymentCore\Api\QuoteResourceInterface;
-use Worldline\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
+use Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\SpecificInputDataBuilder;
+use Cawl\HostedCheckout\Ui\ConfigProvider;
+use Cawl\PaymentCore\Api\QuoteResourceInterface;
+use Cawl\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
 
 /**
  * Test case for configuration "Custom Return URL"

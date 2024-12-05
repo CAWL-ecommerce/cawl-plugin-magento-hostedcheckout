@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Model;
+namespace Cawl\HostedCheckout\Model;
 
 use Magento\Quote\Api\Data\CartInterface;
 use Magento\Vault\Api\Data\PaymentTokenInterface;
 use Magento\Vault\Api\PaymentTokenManagementInterface;
-use Worldline\HostedCheckout\Api\TokenManagerInterface;
+use Cawl\HostedCheckout\Api\TokenManagerInterface;
 use Magento\Framework\Serialize\Serializer\Json;
-use Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
+use Cawl\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
 
 class TokenManager implements TokenManagerInterface
 {

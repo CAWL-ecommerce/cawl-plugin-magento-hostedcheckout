@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Gateway\Request;
+namespace Cawl\HostedCheckout\Gateway\Request;
 
 use Magento\Payment\Gateway\Request\BuilderInterface;
-use Worldline\PaymentCore\Api\AmountFormatterInterface;
-use Worldline\PaymentCore\Api\SubjectReaderInterface;
+use Cawl\PaymentCore\Api\AmountFormatterInterface;
+use Cawl\PaymentCore\Api\SubjectReaderInterface;
 
 class PaymentDataBuilder implements BuilderInterface
 {

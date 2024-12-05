@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest;
+namespace Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest;
 
 use Magento\Framework\Event\ManagerInterface;
 use Magento\Payment\Gateway\Config\Config;
 use Magento\Quote\Api\Data\CartInterface;
 use OnlinePayments\Sdk\Domain\Order;
-use Worldline\HostedCheckout\Model\MealvouchersProductTypeBuilder;
-use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\Order\ShoppingCartDataBuilder;
-use Worldline\HostedCheckout\Ui\ConfigProvider;
-use Worldline\PaymentCore\Api\Config\GeneralSettingsConfigInterface;
-use Worldline\PaymentCore\Api\MethodNameExtractorInterface;
-use Worldline\PaymentCore\Api\Service\CreateRequest\Order\GeneralDataBuilderInterface;
-use Worldline\PaymentCore\Api\Service\CreateRequest\Order\SurchargeDataBuilderInterface;
+use Cawl\HostedCheckout\Model\MealvouchersProductTypeBuilder;
+use Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\Order\ShoppingCartDataBuilder;
+use Cawl\HostedCheckout\Ui\ConfigProvider;
+use Cawl\PaymentCore\Api\Config\GeneralSettingsConfigInterface;
+use Cawl\PaymentCore\Api\MethodNameExtractorInterface;
+use Cawl\PaymentCore\Api\Service\CreateRequest\Order\GeneralDataBuilderInterface;
+use Cawl\PaymentCore\Api\Service\CreateRequest\Order\SurchargeDataBuilderInterface;
 
 class OrderDataBuilder
 {

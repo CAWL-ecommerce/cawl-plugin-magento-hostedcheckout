@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Gateway\Http\Client;
+namespace Cawl\HostedCheckout\Gateway\Http\Client;
 
 use Magento\Framework\Exception\LocalizedException;
 use OnlinePayments\Sdk\Domain\GetHostedCheckoutResponse;
 use Psr\Log\LoggerInterface;
-use Worldline\HostedCheckout\Gateway\Request\PaymentDataBuilder;
-use Worldline\HostedCheckout\Service\HostedCheckout\GetHostedCheckoutStatusService;
-use Worldline\PaymentCore\Gateway\Http\Client\AbstractTransaction;
+use Cawl\HostedCheckout\Gateway\Request\PaymentDataBuilder;
+use Cawl\HostedCheckout\Service\HostedCheckout\GetHostedCheckoutStatusService;
+use Cawl\PaymentCore\Gateway\Http\Client\AbstractTransaction;
 
 class TransactionSale extends AbstractTransaction
 {

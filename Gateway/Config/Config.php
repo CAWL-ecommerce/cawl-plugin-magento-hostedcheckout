@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Gateway\Config;
+namespace Cawl\HostedCheckout\Gateway\Config;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Payment\Gateway\Config\Config as PaymentGatewayConfig;
 use Magento\Store\Model\ScopeInterface;
-use Worldline\HostedCheckout\Ui\ConfigProvider;
+use Cawl\HostedCheckout\Ui\ConfigProvider;
 
 class Config extends PaymentGatewayConfig
 {

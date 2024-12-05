@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Vault;
+namespace Cawl\HostedCheckout\Vault;
 
 use Magento\Framework\Event\ManagerInterface;
 use Magento\Framework\ObjectManagerInterface;
@@ -14,8 +14,8 @@ use Magento\Quote\Api\Data\CartInterface;
 use Magento\Sales\Api\Data\OrderPaymentExtensionInterfaceFactory;
 use Magento\Vault\Api\PaymentTokenManagementInterface;
 use Magento\Vault\Model\Method\Vault as MagentoVault;
-use Worldline\HostedCheckout\Ui\ConfigProvider;
-use Worldline\PaymentCore\Api\VaultValidationInterface;
+use Cawl\HostedCheckout\Ui\ConfigProvider;
+use Cawl\PaymentCore\Api\VaultValidationInterface;
 
 /**
  * @SuppressWarnings(PHPMD.ExcessiveParameterList)

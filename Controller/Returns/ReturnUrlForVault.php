@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Controller\Returns;
+namespace Cawl\HostedCheckout\Controller\Returns;
 
 use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\Action;
@@ -10,9 +10,9 @@ use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
-use Worldline\HostedCheckout\Model\ReturnRequestProcessor;
-use Worldline\PaymentCore\Model\Order\RejectOrderException;
-use Worldline\PaymentCore\Model\OrderState\OrderState;
+use Cawl\HostedCheckout\Model\ReturnRequestProcessor;
+use Cawl\PaymentCore\Model\Order\RejectOrderException;
+use Cawl\PaymentCore\Model\OrderState\OrderState;
 use Magento\Quote\Api\CartRepositoryInterface;
 
 class ReturnUrlForVault extends Action implements HttpGetActionInterface

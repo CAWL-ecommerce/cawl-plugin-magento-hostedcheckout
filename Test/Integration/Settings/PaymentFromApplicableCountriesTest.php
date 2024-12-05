@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Test\Integration\Settings;
+namespace Cawl\HostedCheckout\Test\Integration\Settings;
 
 use Magento\Payment\Model\MethodList;
 use Magento\Quote\Api\Data\CartInterface;

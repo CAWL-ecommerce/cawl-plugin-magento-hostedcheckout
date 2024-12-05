@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Infrastructure\Plugin\Service\HostedCheckout;
+namespace Cawl\HostedCheckout\Infrastructure\Plugin\Service\HostedCheckout;
 
 use OnlinePayments\Sdk\Domain\GetHostedCheckoutResponse;
 use OnlinePayments\Sdk\Domain\GetHostedCheckoutResponseFactory;
-use Worldline\HostedCheckout\Infrastructure\StubData\Service\HostedCheckout\GetHostedCheckoutServiceResponse;
-use Worldline\HostedCheckout\Service\HostedCheckout\GetHostedCheckoutStatusService;
-use Worldline\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
+use Cawl\HostedCheckout\Infrastructure\StubData\Service\HostedCheckout\GetHostedCheckoutServiceResponse;
+use Cawl\HostedCheckout\Service\HostedCheckout\GetHostedCheckoutStatusService;
+use Cawl\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
 
 class GetHostedCheckoutStatusServiceMock
 {

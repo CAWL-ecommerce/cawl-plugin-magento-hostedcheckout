@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Test\Integration\Settings;
+namespace Cawl\HostedCheckout\Test\Integration\Settings;
 
 use Magento\Quote\Api\Data\CartInterface;
 use Magento\TestFramework\Helper\Bootstrap;
 use PHPUnit\Framework\TestCase;
-use Worldline\HostedCheckout\Ui\ConfigProvider;
-use Worldline\PaymentCore\Api\QuoteResourceInterface;
-use Worldline\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
-use Worldline\PaymentCore\Api\Test\Infrastructure\WebhookStubSenderInterface;
-use Worldline\PaymentCore\Infrastructure\StubData\Webhook\Authorization;
-use Worldline\PaymentCore\Model\Webhook\ResourceModel\Webhook as WebhookResource;
-use Worldline\PaymentCore\Model\Webhook\WebhookFactory;
+use Cawl\HostedCheckout\Ui\ConfigProvider;
+use Cawl\PaymentCore\Api\QuoteResourceInterface;
+use Cawl\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
+use Cawl\PaymentCore\Api\Test\Infrastructure\WebhookStubSenderInterface;
+use Cawl\PaymentCore\Infrastructure\StubData\Webhook\Authorization;
+use Cawl\PaymentCore\Model\Webhook\ResourceModel\Webhook as WebhookResource;
+use Cawl\PaymentCore\Model\Webhook\WebhookFactory;
 
 /**
  * Test cases for configuration "Log Webhooks"

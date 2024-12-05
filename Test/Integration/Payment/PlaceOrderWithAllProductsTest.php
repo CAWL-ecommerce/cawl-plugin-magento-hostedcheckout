@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Test\Integration\Payment;
+namespace Cawl\HostedCheckout\Test\Integration\Payment;
 
 use Magento\Quote\Api\Data\CartInterface;
 use Magento\Sales\Api\Data\OrderInterfaceFactory;
 use Magento\TestFramework\Helper\Bootstrap;
-use Worldline\HostedCheckout\Ui\ConfigProvider;
-use Worldline\PaymentCore\Api\QuoteResourceInterface;
-use Worldline\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
-use Worldline\PaymentCore\Api\Test\Infrastructure\WebhookStubSenderInterface;
-use Worldline\PaymentCore\Infrastructure\StubData\Webhook\AuthorizationWithBundle;
-use Worldline\PaymentCore\Infrastructure\StubData\Webhook\AuthorizationWithConfigurable;
+use Cawl\HostedCheckout\Ui\ConfigProvider;
+use Cawl\PaymentCore\Api\QuoteResourceInterface;
+use Cawl\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
+use Cawl\PaymentCore\Api\Test\Infrastructure\WebhookStubSenderInterface;
+use Cawl\PaymentCore\Infrastructure\StubData\Webhook\AuthorizationWithBundle;
+use Cawl\PaymentCore\Infrastructure\StubData\Webhook\AuthorizationWithConfigurable;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)

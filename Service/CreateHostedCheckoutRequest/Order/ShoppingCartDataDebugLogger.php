@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\Order;
+namespace Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\Order;
 
 use Magento\Config\Model\Config\Source\Yesno as YesNoOptionProvider;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -17,7 +17,7 @@ use Magento\Tax\Model\System\Config\Source\Algorithm as CalcMethodBasedOnOptionP
 use Magento\Tax\Model\System\Config\Source\Apply as ApplyCustomerTaxOptionProvider;
 use Magento\Tax\Model\System\Config\Source\PriceType as PriceTypeOptionProvider;
 use OnlinePayments\Sdk\Domain\ShoppingCart;
-use Worldline\PaymentCore\Api\AmountFormatterInterface;
+use Cawl\PaymentCore\Api\AmountFormatterInterface;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)

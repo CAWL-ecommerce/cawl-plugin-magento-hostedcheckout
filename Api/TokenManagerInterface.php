@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Api;
+namespace Cawl\HostedCheckout\Api;
 
 use Magento\Quote\Api\Data\CartInterface;
 use Magento\Vault\Api\Data\PaymentTokenInterface;

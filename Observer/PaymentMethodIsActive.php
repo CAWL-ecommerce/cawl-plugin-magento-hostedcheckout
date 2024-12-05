@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Observer;
+namespace Cawl\HostedCheckout\Observer;
 
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Payment\Model\Method\Adapter;
-use Worldline\HostedCheckout\Gateway\Config\Config;
-use Worldline\HostedCheckout\Ui\ConfigProvider;
-use Worldline\PaymentCore\Api\AvailableMethodCheckerInterface;
+use Cawl\HostedCheckout\Gateway\Config\Config;
+use Cawl\HostedCheckout\Ui\ConfigProvider;
+use Cawl\PaymentCore\Api\AvailableMethodCheckerInterface;
 
 class PaymentMethodIsActive implements ObserverInterface
 {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Api\Service\HostedCheckout;
+namespace Cawl\HostedCheckout\Api\Service\HostedCheckout;
 
 use Magento\Framework\Exception\LocalizedException;
 use OnlinePayments\Sdk\Domain\CreateHostedCheckoutRequest;

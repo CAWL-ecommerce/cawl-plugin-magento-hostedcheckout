@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Plugin\Magento\Checkout\Controller\Cart\Index;
+namespace Cawl\HostedCheckout\Plugin\Magento\Checkout\Controller\Cart\Index;
 
 use Magento\Checkout\Controller\Index\Index;
 use Magento\Framework\Exception\LocalizedException;
-use Worldline\HostedCheckout\Gateway\Request\PaymentDataBuilder;
-use Worldline\HostedCheckout\Model\AddressSaveProcessor;
-use Worldline\HostedCheckout\Service\HostedCheckout\GetHostedCheckoutStatusService;
-use Worldline\HostedCheckout\Ui\ConfigProvider;
-use Worldline\PaymentCore\Api\PaymentInfoCleanerInterface;
+use Cawl\HostedCheckout\Gateway\Request\PaymentDataBuilder;
+use Cawl\HostedCheckout\Model\AddressSaveProcessor;
+use Cawl\HostedCheckout\Service\HostedCheckout\GetHostedCheckoutStatusService;
+use Cawl\HostedCheckout\Ui\ConfigProvider;
+use Cawl\PaymentCore\Api\PaymentInfoCleanerInterface;
 
 /**
  * This plugin is needed to save shipping and/or billing addresses in case of return from the hosted checkout page

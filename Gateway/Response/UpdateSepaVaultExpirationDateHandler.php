@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Gateway\Response;
+namespace Cawl\HostedCheckout\Gateway\Response;
 
 use Magento\Payment\Gateway\Response\HandlerInterface;
 use Magento\Payment\Model\InfoInterface;
 use Magento\Vault\Api\PaymentTokenManagementInterface;
 use Magento\Vault\Api\PaymentTokenRepositoryInterface;
 use OnlinePayments\Sdk\Domain\GetHostedCheckoutResponse;
-use Worldline\PaymentCore\Api\CardDateInterface;
-use Worldline\PaymentCore\Api\SubjectReaderInterface;
+use Cawl\PaymentCore\Api\CardDateInterface;
+use Cawl\PaymentCore\Api\SubjectReaderInterface;
 
 /**
  * So as soon as a mandate is used (be it for recurring or one-off), its validity extends by 36 months.

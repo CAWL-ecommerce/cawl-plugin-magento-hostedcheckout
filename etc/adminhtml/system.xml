@@ -60,7 +60,7 @@
                 </field>
                 <field id="allow_specific_currency" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" canRestore="1">
                     <label>Payment from Applicable Currencies</label>
-                    <source_model>Worldline\PaymentCore\Model\Config\Source\AllSpecificCurrencies</source_model>
+                    <source_model>Cawl\PaymentCore\Model\Config\Source\AllSpecificCurrencies</source_model>
                     <config_path>payment/worldline_hosted_checkout/allow_specific_currency</config_path>
                     <depends>
                         <field id="active">1</field>
@@ -78,7 +78,7 @@
                 </field>
                 <field id="allow_specific_customer_group" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" canRestore="1">
                     <label>Payment from Applicable Customer Groups</label>
-                    <source_model>Worldline\PaymentCore\Model\Config\Source\AllSpecificCustomerGroups</source_model>
+                    <source_model>Cawl\PaymentCore\Model\Config\Source\AllSpecificCustomerGroups</source_model>
                     <config_path>payment/worldline_hosted_checkout/allow_specific_customer_group</config_path>
                     <depends>
                         <field id="active">1</field>
@@ -136,7 +136,7 @@
                 </field>
                 <field id="payment_action" type="select" translate="label" sortOrder="160" showInDefault="1" showInWebsite="1">
                     <label>Payment Action</label>
-                    <source_model>Worldline\PaymentCore\Model\Config\Source\PaymentActionOptions</source_model>
+                    <source_model>Cawl\PaymentCore\Model\Config\Source\PaymentActionOptions</source_model>
                     <depends>
                         <field id="active">1</field>
                     </depends>
@@ -144,7 +144,7 @@
                 </field>
                 <field id="authorization_mode" type="select" translate="label" sortOrder="170" showInDefault="1" showInWebsite="1">
                     <label>Authorization Mode</label>
-                    <source_model>Worldline\PaymentCore\Model\Config\Source\AuthorizationModeOptions</source_model>
+                    <source_model>Cawl\PaymentCore\Model\Config\Source\AuthorizationModeOptions</source_model>
                     <depends>
                         <field id="active">1</field>
                         <field id="payment_action">authorize</field>
@@ -153,7 +153,7 @@
                 </field>
                 <field id="order_status" type="select" translate="label" sortOrder="180" showInDefault="1" showInWebsite="1">
                     <label>Default Order Status</label>
-                    <source_model>Worldline\PaymentCore\Model\Config\Source\OrderStatusOptions</source_model>
+                    <source_model>Cawl\PaymentCore\Model\Config\Source\OrderStatusOptions</source_model>
                     <depends>
                         <field id="active">1</field>
                     </depends>
@@ -188,7 +188,7 @@
                 </field>
                 <field id="direct_debit_recurrence_type" translate="label" type="select" sortOrder="230" showInDefault="1" showInWebsite="1">
                     <label>Direct Debit Recurrence Type</label>
-                    <source_model>Worldline\HostedCheckout\Config\Source\DirectDebit\RecurrenceType</source_model>
+                    <source_model>Cawl\HostedCheckout\Config\Source\DirectDebit\RecurrenceType</source_model>
                     <config_path>payment/worldline_hosted_checkout/direct_debit_recurrence_type</config_path>
                     <depends>
                         <field id="active">1</field>
@@ -196,7 +196,7 @@
                 </field>
                 <field id="direct_debit_signature_type" translate="label" type="select" sortOrder="240" showInDefault="1" showInWebsite="1">
                     <label>Direct Debit Signature Type</label>
-                    <source_model>Worldline\HostedCheckout\Config\Source\DirectDebit\SignatureType</source_model>
+                    <source_model>Cawl\HostedCheckout\Config\Source\DirectDebit\SignatureType</source_model>
                     <config_path>payment/worldline_hosted_checkout/direct_debit_signature_type</config_path>
                     <depends>
                         <field id="active">1</field>
@@ -232,7 +232,7 @@
                 </field>
                 <field id="bank_transfer_mode" translate="label tooltip" type="select" sortOrder="280" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Bank Transfer by Cawl - Mode</label>
-                    <source_model>Worldline\PaymentCore\Model\Config\Source\BankTransferModes</source_model>
+                    <source_model>Cawl\PaymentCore\Model\Config\Source\BankTransferModes</source_model>
                     <config_path>payment/worldline_hosted_checkout/bank_transfer_mode</config_path>
                     <tooltip><![CDATA[Select which modes of bank transfer you want to allow.'Instant Payments Only' : Receive transfer confirmation within 20 minutes. Limits customer bank choices to only those supporting instant payments.'Standard & Instant Payments' : Accept transfers from all banks. Broader customer bank choice but it can take up to 96 hours for transfer confirmation.]]></tooltip>
                     <depends>

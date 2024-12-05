@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Model;
+namespace Cawl\HostedCheckout\Model;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Quote\Api\Data\CartInterface;
 use OnlinePayments\Sdk\Domain\GetHostedCheckoutResponse;
-use Worldline\HostedCheckout\Service\HostedCheckout\GetHostedCheckoutStatusService;
-use Worldline\PaymentCore\Model\Order\RejectOrderException;
+use Cawl\HostedCheckout\Service\HostedCheckout\GetHostedCheckoutStatusService;
+use Cawl\PaymentCore\Model\Order\RejectOrderException;
 
 class SuccessTransactionChecker
 {

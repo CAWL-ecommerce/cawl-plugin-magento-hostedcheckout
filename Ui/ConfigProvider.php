@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Ui;
+namespace Cawl\HostedCheckout\Ui;
 
 use Magento\Checkout\Model\ConfigProviderInterface;
 use Magento\Checkout\Model\Session;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Store\Model\StoreManagerInterface;
 use Psr\Log\LoggerInterface;
-use Worldline\HostedCheckout\Gateway\Config\Config;
-use Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
-use Worldline\PaymentCore\Api\Ui\PaymentIconsProviderInterface;
+use Cawl\HostedCheckout\Gateway\Config\Config;
+use Cawl\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
+use Cawl\PaymentCore\Api\Ui\PaymentIconsProviderInterface;
 
 /**
  * @SuppressWarnings(PHPMD.CookieAndSessionMisuse)

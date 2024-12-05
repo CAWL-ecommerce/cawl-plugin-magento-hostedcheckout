@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Config\Source\DirectDebit;
+namespace Cawl\HostedCheckout\Config\Source\DirectDebit;
 
 use Magento\Framework\Data\OptionSourceInterface;
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Setup\Patch\Data;
+namespace Cawl\HostedCheckout\Setup\Patch\Data;
 
 use Magento\Catalog\Api\Data\ProductAttributeInterface;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
@@ -9,7 +9,7 @@ use Magento\Eav\Setup\EavSetup;
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Worldline\HostedCheckout\Model\Config\Source\MealvouchersProductTypes;
+use Cawl\HostedCheckout\Model\Config\Source\MealvouchersProductTypes;
 
 class CreateMealvouchersProductAttribute implements DataPatchInterface
 {

@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Model\Webhook;
+namespace Cawl\HostedCheckout\Model\Webhook;
 
 use Magento\Sales\Model\OrderFactory;
 use OnlinePayments\Sdk\Domain\WebhooksEvent;
-use Worldline\PaymentCore\Api\Order\InvoiceManagerInterface;
-use Worldline\PaymentCore\Api\PaymentDataManagerInterface;
-use Worldline\PaymentCore\Api\Webhook\PlaceOrderManagerInterface;
-use Worldline\PaymentCore\Api\Webhook\ProcessorInterface;
-use Worldline\PaymentCore\Model\Webhook\PlaceOrderProcessor;
+use Cawl\PaymentCore\Api\Order\InvoiceManagerInterface;
+use Cawl\PaymentCore\Api\PaymentDataManagerInterface;
+use Cawl\PaymentCore\Api\Webhook\PlaceOrderManagerInterface;
+use Cawl\PaymentCore\Api\Webhook\ProcessorInterface;
+use Cawl\PaymentCore\Model\Webhook\PlaceOrderProcessor;
 
 class SepaOrderProcessor implements ProcessorInterface
 {

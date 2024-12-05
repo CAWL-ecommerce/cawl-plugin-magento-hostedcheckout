@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\WebApi;
+namespace Cawl\HostedCheckout\WebApi;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Quote\Api\Data\AddressInterface;
 use Magento\Quote\Api\Data\PaymentInterface;
-use Worldline\HostedCheckout\Api\RedirectManagementInterface;
-use Worldline\PaymentCore\Api\WebApi\Checkout\BaseCreatePaymentManagementInterface;
+use Cawl\HostedCheckout\Api\RedirectManagementInterface;
+use Cawl\PaymentCore\Api\WebApi\Checkout\BaseCreatePaymentManagementInterface;
 
 class RedirectManagement implements RedirectManagementInterface
 {

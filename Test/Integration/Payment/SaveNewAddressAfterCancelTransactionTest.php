@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Test\Integration\Payment;
+namespace Cawl\HostedCheckout\Test\Integration\Payment;
 
 use Magento\Customer\Api\AddressRepositoryInterface;
 use Magento\Customer\Model\Session;
@@ -11,10 +11,10 @@ use Magento\Framework\App\Request\HttpFactory as HttpRequestFactory;
 use Magento\Quote\Model\ResourceModel\Quote\Payment\CollectionFactory as QuotePaymentCollectionFactory;
 use Magento\TestFramework\Helper\Bootstrap;
 use PHPUnit\Framework\TestCase;
-use Worldline\HostedCheckout\Controller\Returns\ReturnUrlFactory;
-use Worldline\HostedCheckout\Ui\ConfigProvider;
-use Worldline\PaymentCore\Api\QuoteResourceInterface;
-use Worldline\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
+use Cawl\HostedCheckout\Controller\Returns\ReturnUrlFactory;
+use Cawl\HostedCheckout\Ui\ConfigProvider;
+use Cawl\PaymentCore\Api\QuoteResourceInterface;
+use Cawl\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
 
 /**
  * Test case about save new address after cancel transaction

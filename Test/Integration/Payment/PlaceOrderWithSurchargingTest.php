@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Test\Integration\Payment;
+namespace Cawl\HostedCheckout\Test\Integration\Payment;
 
 use Magento\Customer\Model\Session;
 use Magento\Quote\Api\Data\CartInterface;
 use Magento\Sales\Api\Data\OrderInterfaceFactory;
 use Magento\TestFramework\Helper\Bootstrap;
 use PHPUnit\Framework\TestCase;
-use Worldline\HostedCheckout\Ui\ConfigProvider;
-use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\OrderDataBuilder;
-use Worldline\PaymentCore\Api\QuoteResourceInterface;
-use Worldline\PaymentCore\Api\SurchargingQuoteRepositoryInterface;
-use Worldline\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
-use Worldline\PaymentCore\Api\Test\Infrastructure\WebhookStubSenderInterface;
-use Worldline\PaymentCore\Infrastructure\StubData\Webhook\AuthorizationWithSurcharging;
-use Worldline\PaymentCore\Service\CreateRequest\Order\SurchargeDataBuilder;
+use Cawl\HostedCheckout\Ui\ConfigProvider;
+use Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\OrderDataBuilder;
+use Cawl\PaymentCore\Api\QuoteResourceInterface;
+use Cawl\PaymentCore\Api\SurchargingQuoteRepositoryInterface;
+use Cawl\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
+use Cawl\PaymentCore\Api\Test\Infrastructure\WebhookStubSenderInterface;
+use Cawl\PaymentCore\Infrastructure\StubData\Webhook\AuthorizationWithSurcharging;
+use Cawl\PaymentCore\Service\CreateRequest\Order\SurchargeDataBuilder;
 
 /**
  * Test case about place order with surcharging

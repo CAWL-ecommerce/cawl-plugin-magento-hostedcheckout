@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Plugin\Magento\Payment\Model\Method\Adapter;
+namespace Cawl\HostedCheckout\Plugin\Magento\Payment\Model\Method\Adapter;
 
 use Magento\Payment\Model\Method\Adapter;
-use Worldline\HostedCheckout\Model\Config\PaymentActionReplaceHandlerInterface;
-use Worldline\HostedCheckout\Model\Data\OrderPaymentContainer;
+use Cawl\HostedCheckout\Model\Config\PaymentActionReplaceHandlerInterface;
+use Cawl\HostedCheckout\Model\Data\OrderPaymentContainer;
 
 class ReplacePaymentAction
 {

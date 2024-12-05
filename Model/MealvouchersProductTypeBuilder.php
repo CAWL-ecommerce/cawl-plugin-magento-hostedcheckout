@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Model;
+namespace Cawl\HostedCheckout\Model;
 
 use Magento\Quote\Api\Data\CartInterface;
-use Worldline\HostedCheckout\Model\Config\Source\MealvouchersProductTypes;
+use Cawl\HostedCheckout\Model\Config\Source\MealvouchersProductTypes;
 
 class MealvouchersProductTypeBuilder
 {

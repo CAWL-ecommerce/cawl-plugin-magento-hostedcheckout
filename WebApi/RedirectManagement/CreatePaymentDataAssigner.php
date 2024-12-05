@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\WebApi\RedirectManagement;
+namespace Cawl\HostedCheckout\WebApi\RedirectManagement;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Quote\Api\Data\PaymentInterface;
 use Psr\Log\LoggerInterface;
-use Worldline\HostedCheckout\Api\TokenManagerInterface;
-use Worldline\HostedCheckout\Gateway\Request\PaymentDataBuilder;
-use Worldline\HostedCheckout\Service\HostedCheckout\CreateHostedCheckoutRequestBuilder;
-use Worldline\HostedCheckout\Service\HostedCheckout\CreateHostedCheckoutService;
-use Worldline\PaymentCore\Api\Data\QuotePaymentInterface;
-use Worldline\PaymentCore\Model\DataAssigner\DataAssignerInterface;
+use Cawl\HostedCheckout\Api\TokenManagerInterface;
+use Cawl\HostedCheckout\Gateway\Request\PaymentDataBuilder;
+use Cawl\HostedCheckout\Service\HostedCheckout\CreateHostedCheckoutRequestBuilder;
+use Cawl\HostedCheckout\Service\HostedCheckout\CreateHostedCheckoutService;
+use Cawl\PaymentCore\Api\Data\QuotePaymentInterface;
+use Cawl\PaymentCore\Model\DataAssigner\DataAssignerInterface;
 
 class CreatePaymentDataAssigner implements DataAssignerInterface
 {

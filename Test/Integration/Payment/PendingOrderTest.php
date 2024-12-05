@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Test\Integration\Payment;
+namespace Cawl\HostedCheckout\Test\Integration\Payment;
 
 use Magento\Customer\Model\Session;
 use Magento\Framework\App\Request\Http as HttpRequest;
@@ -9,10 +9,10 @@ use Magento\Framework\App\Request\HttpFactory as HttpRequestFactory;
 use Magento\Sales\Api\Data\OrderInterfaceFactory;
 use Magento\TestFramework\Helper\Bootstrap;
 use PHPUnit\Framework\TestCase;
-use Worldline\HostedCheckout\Ui\ConfigProvider;
-use Worldline\PaymentCore\Api\QuoteResourceInterface;
-use Worldline\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
-use Worldline\PaymentCore\Controller\Returns\PendingOrderFactory;
+use Cawl\HostedCheckout\Ui\ConfigProvider;
+use Cawl\PaymentCore\Api\QuoteResourceInterface;
+use Cawl\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
+use Cawl\PaymentCore\Controller\Returns\PendingOrderFactory;
 
 /**
  * Test case about place order via pending page

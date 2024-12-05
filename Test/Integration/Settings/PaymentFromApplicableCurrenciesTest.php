@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Test\Integration\Settings;
+namespace Cawl\HostedCheckout\Test\Integration\Settings;
 
 use Magento\Payment\Model\MethodList;
 use Magento\Quote\Api\Data\CartInterface;
 use Magento\Quote\Model\ResourceModel\Quote\CollectionFactory as QuoteCollectionFactory;
 use Magento\TestFramework\Helper\Bootstrap;
 use PHPUnit\Framework\TestCase;
-use Worldline\HostedCheckout\Ui\ConfigProvider;
+use Cawl\HostedCheckout\Ui\ConfigProvider;
 
 /**
  * Test cases for configuration "Payment from Applicable Currencies"

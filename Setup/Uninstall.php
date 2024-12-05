@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Setup;
+namespace Cawl\HostedCheckout\Setup;
 
 use Magento\Catalog\Api\Data\ProductAttributeInterface;
 use Magento\Config\Model\ResourceModel\Config as ConfigResource;
@@ -12,7 +12,7 @@ use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
 use Magento\Framework\Setup\UninstallInterface;
-use Worldline\HostedCheckout\Model\Config\Source\MealvouchersProductTypes;
+use Cawl\HostedCheckout\Model\Config\Source\MealvouchersProductTypes;
 
 class Uninstall implements UninstallInterface
 {

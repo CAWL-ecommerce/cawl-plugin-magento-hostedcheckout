@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Model\Data;
+namespace Cawl\HostedCheckout\Model\Data;
 
 use Magento\Sales\Api\Data\OrderPaymentInterface;
 

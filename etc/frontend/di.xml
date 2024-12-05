@@ -4,7 +4,7 @@
     <type name="Magento\Checkout\Model\CompositeConfigProvider">
         <arguments>
             <argument name="configProviders" xsi:type="array">
-                <item name="worldline_hosted_checkout_config_provider" xsi:type="object">Worldline\HostedCheckout\Ui\ConfigProvider</item>
+                <item name="worldline_hosted_checkout_config_provider" xsi:type="object">Cawl\HostedCheckout\Ui\ConfigProvider</item>
             </argument>
         </arguments>
     </type>
@@ -12,24 +12,24 @@
     <type name="Magento\Vault\Model\Ui\TokensConfigProvider">
         <arguments>
             <argument name="tokenUiComponentProviders" xsi:type="array">
-                <item name="worldline_hosted_checkout" xsi:type="object">Worldline\HostedCheckout\Ui\TokenUiComponentProvider</item>
+                <item name="worldline_hosted_checkout" xsi:type="object">Cawl\HostedCheckout\Ui\TokenUiComponentProvider</item>
             </argument>
         </arguments>
     </type>
 
-    <type name="Worldline\HostedCheckout\Model\ReturnRequestProcessor">
+    <type name="Cawl\HostedCheckout\Model\ReturnRequestProcessor">
         <arguments>
-            <argument name="addressSaveProcessor" xsi:type="object">Worldline\HostedCheckout\Model\AddressSaveProcessor\Proxy</argument>
+            <argument name="addressSaveProcessor" xsi:type="object">Cawl\HostedCheckout\Model\AddressSaveProcessor\Proxy</argument>
         </arguments>
     </type>
-    <type name="Worldline\HostedCheckout\Plugin\Magento\Checkout\Controller\Cart\Index\SaveAddress">
+    <type name="Cawl\HostedCheckout\Plugin\Magento\Checkout\Controller\Cart\Index\SaveAddress">
         <arguments>
-            <argument name="addressSaveProcessor" xsi:type="object">Worldline\HostedCheckout\Model\AddressSaveProcessor\Proxy</argument>
+            <argument name="addressSaveProcessor" xsi:type="object">Cawl\HostedCheckout\Model\AddressSaveProcessor\Proxy</argument>
         </arguments>
     </type>
 
     <type name="Magento\Checkout\Controller\Index\Index">
         <plugin name="Cawl_HostedCheckout::save_addresses"
-                type="Worldline\HostedCheckout\Plugin\Magento\Checkout\Controller\Cart\Index\SaveAddress"/>
+                type="Cawl\HostedCheckout\Plugin\Magento\Checkout\Controller\Cart\Index\SaveAddress"/>
     </type>
 </config>

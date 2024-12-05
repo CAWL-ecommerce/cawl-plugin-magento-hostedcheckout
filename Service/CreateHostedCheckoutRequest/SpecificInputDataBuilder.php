@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest;
+namespace Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest;
 
 use Magento\Framework\Event\ManagerInterface;
 use Magento\Framework\Locale\Resolver;
@@ -10,9 +10,9 @@ use OnlinePayments\Sdk\Domain\CardPaymentMethodSpecificInputForHostedCheckout;
 use OnlinePayments\Sdk\Domain\CardPaymentMethodSpecificInputForHostedCheckoutFactory;
 use OnlinePayments\Sdk\Domain\HostedCheckoutSpecificInput;
 use OnlinePayments\Sdk\Domain\HostedCheckoutSpecificInputFactory;
-use Worldline\HostedCheckout\Gateway\Config\Config;
-use Worldline\HostedCheckout\Ui\ConfigProvider;
-use Worldline\PaymentCore\Api\Config\GeneralSettingsConfigInterface;
+use Cawl\HostedCheckout\Gateway\Config\Config;
+use Cawl\HostedCheckout\Ui\ConfigProvider;
+use Cawl\PaymentCore\Api\Config\GeneralSettingsConfigInterface;
 
 class SpecificInputDataBuilder
 {

@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Gateway\Response;
+namespace Cawl\HostedCheckout\Gateway\Response;
 
 use Magento\Payment\Gateway\Response\HandlerInterface;
 use Magento\Sales\Api\Data\OrderPaymentInterface;
 use OnlinePayments\Sdk\Domain\GetHostedCheckoutResponse;
-use Worldline\PaymentCore\Api\SubjectReaderInterface;
+use Cawl\PaymentCore\Api\SubjectReaderInterface;
 
 class PaymentDetailsHandler implements HandlerInterface
 {

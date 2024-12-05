@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Test\Integration\Settings;
+namespace Cawl\HostedCheckout\Test\Integration\Settings;
 
 use Magento\Quote\Api\Data\CartInterface;
 use Magento\Sales\Api\Data\OrderInterfaceFactory;
 use Magento\TestFramework\Helper\Bootstrap;
 use OnlinePayments\Sdk\Domain\Order;
 use PHPUnit\Framework\TestCase;
-use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\OrderDataBuilder;
-use Worldline\HostedCheckout\Ui\ConfigProvider;
-use Worldline\PaymentCore\Api\QuoteResourceInterface;
-use Worldline\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
-use Worldline\PaymentCore\Api\Test\Infrastructure\WebhookStubSenderInterface;
-use Worldline\PaymentCore\Infrastructure\StubData\Webhook\AuthorizationWithDiscount;
+use Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\OrderDataBuilder;
+use Cawl\HostedCheckout\Ui\ConfigProvider;
+use Cawl\PaymentCore\Api\QuoteResourceInterface;
+use Cawl\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
+use Cawl\PaymentCore\Api\Test\Infrastructure\WebhookStubSenderInterface;
+use Cawl\PaymentCore\Infrastructure\StubData\Webhook\AuthorizationWithDiscount;
 
 /**
  * Test cases for configuration "Submit Customer Cart Items Data to Cawl"

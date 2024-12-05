@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Service\Mandates;
+namespace Cawl\HostedCheckout\Service\Mandates;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Payment\Gateway\Config\Config;
 use Magento\Quote\Api\Data\CartInterface;
 use OnlinePayments\Sdk\Domain\CreateMandateRequest;
 use OnlinePayments\Sdk\Domain\CreateMandateRequestFactory;
-use Worldline\HostedCheckout\Api\Service\Mandates\MandateDataBuilderInterface;
+use Cawl\HostedCheckout\Api\Service\Mandates\MandateDataBuilderInterface;
 
 class MandateDataBuilder implements MandateDataBuilderInterface
 {

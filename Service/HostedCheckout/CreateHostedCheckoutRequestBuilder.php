@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Service\HostedCheckout;
+namespace Cawl\HostedCheckout\Service\HostedCheckout;
 
 use Magento\Quote\Api\Data\CartInterface;
 use OnlinePayments\Sdk\Domain\CreateHostedCheckoutRequest;
 use OnlinePayments\Sdk\Domain\CreateHostedCheckoutRequestFactory;
-use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\CardPaymentMethodSIDBuilder;
-use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\OrderDataBuilder;
-use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\RedirectPaymentMethodSpecificInputDataBuilder;
-use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\SepaDirectDebitSIBuilder;
-use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\SpecificInputDataBuilder;
+use Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\CardPaymentMethodSIDBuilder;
+use Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\OrderDataBuilder;
+use Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\RedirectPaymentMethodSpecificInputDataBuilder;
+use Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\SepaDirectDebitSIBuilder;
+use Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\SpecificInputDataBuilder;
 
 class CreateHostedCheckoutRequestBuilder
 {

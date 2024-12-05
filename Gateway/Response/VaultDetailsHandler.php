@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Gateway\Response;
+namespace Cawl\HostedCheckout\Gateway\Response;
 
 use Magento\Payment\Gateway\Response\HandlerInterface;
 use Magento\Payment\Model\InfoInterface;
@@ -10,9 +10,9 @@ use Magento\Sales\Api\Data\OrderPaymentExtensionInterfaceFactory;
 use Magento\Vault\Api\Data\PaymentTokenFactoryInterface;
 use Magento\Vault\Api\Data\PaymentTokenInterface;
 use OnlinePayments\Sdk\Domain\GetHostedCheckoutResponse;
-use Worldline\PaymentCore\Api\CardDateInterface;
-use Worldline\PaymentCore\Api\SubjectReaderInterface;
-use Worldline\PaymentCore\Api\Config\WorldlineConfigInterface;
+use Cawl\PaymentCore\Api\CardDateInterface;
+use Cawl\PaymentCore\Api\SubjectReaderInterface;
+use Cawl\PaymentCore\Api\Config\WorldlineConfigInterface;
 
 class VaultDetailsHandler implements HandlerInterface
 {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\Order;
+namespace Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\Order;
 
 use Magento\Bundle\Model\Product\Type as BundleProductType;
 use Magento\Quote\Api\Data\CartItemInterface;
@@ -11,8 +11,8 @@ use OnlinePayments\Sdk\Domain\LineItem;
 use OnlinePayments\Sdk\Domain\LineItemFactory;
 use OnlinePayments\Sdk\Domain\OrderLineDetails;
 use OnlinePayments\Sdk\Domain\OrderLineDetailsFactory;
-use Worldline\HostedCheckout\Model\Config\Source\MealvouchersProductTypes;
-use Worldline\PaymentCore\Api\AmountFormatterInterface;
+use Cawl\HostedCheckout\Model\Config\Source\MealvouchersProductTypes;
+use Cawl\PaymentCore\Api\AmountFormatterInterface;
 
 class LineItemBuilder
 {

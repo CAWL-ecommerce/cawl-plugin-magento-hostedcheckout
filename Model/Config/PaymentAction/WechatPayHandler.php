@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Model\Config\PaymentAction;
+namespace Cawl\HostedCheckout\Model\Config\PaymentAction;
 
 use Magento\Sales\Api\Data\OrderPaymentInterface;
-use Worldline\HostedCheckout\Model\Config\PaymentActionReplaceHandlerInterface;
-use Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
-use Worldline\PaymentCore\Api\PaymentRepositoryInterface;
+use Cawl\HostedCheckout\Model\Config\PaymentActionReplaceHandlerInterface;
+use Cawl\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
+use Cawl\PaymentCore\Api\PaymentRepositoryInterface;
 
 class WechatPayHandler implements PaymentActionReplaceHandlerInterface
 {

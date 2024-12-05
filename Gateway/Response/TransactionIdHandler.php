@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Gateway\Response;
+namespace Cawl\HostedCheckout\Gateway\Response;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Payment\Gateway\Response\HandlerInterface;
@@ -9,7 +9,7 @@ use Magento\Sales\Model\Order\Payment;
 use OnlinePayments\Sdk\DataObject;
 use OnlinePayments\Sdk\Domain\CaptureResponse;
 use OnlinePayments\Sdk\Domain\GetHostedCheckoutResponse;
-use Worldline\PaymentCore\Api\SubjectReaderInterface;
+use Cawl\PaymentCore\Api\SubjectReaderInterface;
 
 class TransactionIdHandler implements HandlerInterface
 {

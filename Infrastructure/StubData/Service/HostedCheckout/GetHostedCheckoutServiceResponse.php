@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Infrastructure\StubData\Service\HostedCheckout;
+namespace Cawl\HostedCheckout\Infrastructure\StubData\Service\HostedCheckout;
 
 /**
  * phpcs:disable Magento2.Functions.StaticFunction

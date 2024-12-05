@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Model;
+namespace Cawl\HostedCheckout\Model;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Quote\Api\Data\CartInterface;
 use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Model\OrderFactory;
 use OnlinePayments\Sdk\Domain\GetHostedCheckoutResponse;
-use Worldline\PaymentCore\Api\OrderStateManagerInterface;
-use Worldline\PaymentCore\Api\QuoteResourceInterface;
-use Worldline\PaymentCore\Api\SessionDataManagerInterface;
-use Worldline\PaymentCore\Model\Order\RejectOrderException;
-use Worldline\PaymentCore\Model\OrderState\OrderState;
-use Worldline\PaymentCore\Model\QuotePayment\QuotePaymentRepository;
+use Cawl\PaymentCore\Api\OrderStateManagerInterface;
+use Cawl\PaymentCore\Api\QuoteResourceInterface;
+use Cawl\PaymentCore\Api\SessionDataManagerInterface;
+use Cawl\PaymentCore\Model\Order\RejectOrderException;
+use Cawl\PaymentCore\Model\OrderState\OrderState;
+use Cawl\PaymentCore\Model\QuotePayment\QuotePaymentRepository;
 
 class ReturnRequestProcessor
 {

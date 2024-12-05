@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Plugin\Worldline\PaymentCore\ViewModel\PendingPaymentPageDataProvider;
+namespace Cawl\HostedCheckout\Plugin\Cawl\PaymentCore\ViewModel\PendingPaymentPageDataProvider;
 
-use Worldline\PaymentCore\Api\Data\PaymentInterface;
-use Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
-use Worldline\PaymentCore\Api\QuoteResourceInterface;
-use Worldline\PaymentCore\ViewModel\PendingPaymentPageDataProvider;
+use Cawl\PaymentCore\Api\Data\PaymentInterface;
+use Cawl\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
+use Cawl\PaymentCore\Api\QuoteResourceInterface;
+use Cawl\PaymentCore\ViewModel\PendingPaymentPageDataProvider;
 
 class ChangeMessagePostfix
 {

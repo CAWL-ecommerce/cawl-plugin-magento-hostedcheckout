@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\Order;
+namespace Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\Order;
 
 use Magento\Quote\Api\Data\CartInterface;
 use OnlinePayments\Sdk\Domain\ShoppingCart;
 use OnlinePayments\Sdk\Domain\ShoppingCartFactory;
-use Worldline\PaymentCore\Api\AmountFormatterInterface;
+use Cawl\PaymentCore\Api\AmountFormatterInterface;
 
 class ShoppingCartDataBuilder
 {

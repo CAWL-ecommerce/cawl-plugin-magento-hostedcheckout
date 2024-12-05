@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\HostedCheckout\Service\HostedCheckout;
+namespace Cawl\HostedCheckout\Service\HostedCheckout;
 
 use Exception;
 use Magento\Framework\Exception\LocalizedException;
 use OnlinePayments\Sdk\Domain\CreateHostedCheckoutRequest;
 use OnlinePayments\Sdk\Domain\CreateHostedCheckoutResponse;
 use Psr\Log\LoggerInterface;
-use Worldline\HostedCheckout\Api\Service\HostedCheckout\CreateHostedCheckoutServiceInterface;
-use Worldline\PaymentCore\Api\ClientProviderInterface;
-use Worldline\PaymentCore\Api\Config\WorldlineConfigInterface;
+use Cawl\HostedCheckout\Api\Service\HostedCheckout\CreateHostedCheckoutServiceInterface;
+use Cawl\PaymentCore\Api\ClientProviderInterface;
+use Cawl\PaymentCore\Api\Config\WorldlineConfigInterface;
 
 /**
  * @link https://support.direct.ingenico.com/documentation/api/reference/#operation/CreateHostedCheckoutApi
