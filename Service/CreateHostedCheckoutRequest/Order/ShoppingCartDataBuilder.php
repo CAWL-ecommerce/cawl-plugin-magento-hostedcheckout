@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\Order;
 
 use Magento\Quote\Api\Data\CartInterface;
+use OnlinePayments\Sdk\Domain\Discount;
 use OnlinePayments\Sdk\Domain\LineItem;
 use OnlinePayments\Sdk\Domain\ShoppingCart;
 use OnlinePayments\Sdk\Domain\ShoppingCartFactory;
@@ -68,6 +69,29 @@ class ShoppingCartDataBuilder
         }
 
         return $shoppingCart;
+    }
+
+    public function getDiscountAdjustment(CartInterface $quote, ShoppingCart $cart): ?Discount
+    {
+        $cartTotal = 0;
+
+        foreach ($cart->getItems() as $item) {
+            $cartTotal += $item->getAmountOfMoney()->getAmount();
+        }
+
+        $amountDifference = $this->getAmountDifference($quote, $cartTotal);
+        $allowedDifference = $this->getAllowedDifference(
+            (string) $quote->getCurrency()->getQuoteCurrencyCode()
+        );
+
+        if ($amountDifference < 0 && $amountDifference > -$allowedDifference) {
+            $discount = new Discount();
+            $discount->setAmount(-$amountDifference);
+
+            return $discount;
+        }
+
+        return null;
     }
 
     /**
@@ -140,6 +164,8 @@ class ShoppingCartDataBuilder
     {
         $difference = $this->getAmountDifference($quote, $cartTotal);
 
-        return $difference > 0 || $difference < -$this->getAllowedDifference((string)$quote->getCurrency()->getQuoteCurrencyCode());
+        $currency = (string)$quote->getCurrency()->getQuoteCurrencyCode();
+
+        return $difference > 0 || $difference < -$this->getAllowedDifference($currency);
     }
 }
