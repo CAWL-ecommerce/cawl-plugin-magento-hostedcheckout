@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest;
 
+use Cawl\HostedCheckout\Gateway\Config\Config;
 use Magento\Quote\Api\Data\CartInterface;
 use OnlinePayments\Sdk\Domain\MobilePaymentMethodSpecificInput;
 use OnlinePayments\Sdk\Domain\GPayThreeDSecure;
@@ -10,7 +11,6 @@ use OnlinePayments\Sdk\Domain\MobilePaymentProduct320SpecificInput;
 use Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\SpecificInputDataBuilder as HCSpecificInputDataBuilder;
 use Cawl\PaymentCore\Api\Config\GeneralSettingsConfigInterface;
 use Cawl\PaymentCore\Model\ThreeDSecure\ParamsHandler;
-use Cawl\RedirectPayment\WebApi\RedirectManagement;
 use OnlinePayments\Sdk\Domain\RedirectionData;
 use OnlinePayments\Sdk\Domain\MobilePaymentMethodHostedCheckoutSpecificInput;
 
@@ -24,15 +24,23 @@ class HostedMobilePaymentMethodSpecificInputDataBuilder
      */
     private $generalSettings;
 
+    /**
+     * @var Config
+     */
+    private $config;
+
     public function __construct(
-        GeneralSettingsConfigInterface $generalSettings
+        GeneralSettingsConfigInterface $generalSettings,
+        Config $config
     ) {
         $this->generalSettings = $generalSettings;
+        $this->config = $config;
     }
 
     public function build(CartInterface $quote): MobilePaymentMethodHostedCheckoutSpecificInput
     {
         $mobilePaymentMethodSpecificInput = new MobilePaymentMethodHostedCheckoutSpecificInput();
+        $mobilePaymentMethodSpecificInput->setAuthorizationMode($this->config->getAuthorizationMode());
         $mobilePaymentMethodSpecificInput->setPaymentProduct320SpecificInput(
             $this->buildPaymentProduct320SpecificInput($quote->getStoreId(), (float)$quote->getGrandTotal())
         );
