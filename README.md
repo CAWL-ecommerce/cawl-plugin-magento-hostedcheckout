@@ -14,7 +14,7 @@ This solution is also included into:
 ### Change log:
 
 #### 1.1.5
-- Update plugin translations
+- Update translations
 
 #### 1.1.4
 - Added 3DS exemption types to the plugin
