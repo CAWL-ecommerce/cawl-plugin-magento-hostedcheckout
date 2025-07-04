@@ -8,6 +8,8 @@ use OnlinePayments\Sdk\Domain\RedirectPaymentMethodSpecificInput;
 use OnlinePayments\Sdk\Domain\RedirectPaymentMethodSpecificInputFactory;
 use OnlinePayments\Sdk\Domain\RedirectPaymentProduct5408SpecificInputFactory;
 use Cawl\HostedCheckout\Gateway\Config\Config;
+use Cawl\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
+use Cawl\RedirectPayment\WebApi\RedirectManagement;
 
 class RedirectPaymentMethodSpecificInputDataBuilder
 {
@@ -41,8 +43,13 @@ class RedirectPaymentMethodSpecificInputDataBuilder
         $storeId = (int)$quote->getStoreId();
         /** @var RedirectPaymentMethodSpecificInput $redirectPaymentMethodSpecificInput */
         $redirectPaymentMethodSpecificInput = $this->redirectPaymentMethodSpecificInputFactory->create();
+        $paymentProductId = $quote->getPayment()->getAdditionalInformation(RedirectManagement::PAYMENT_PRODUCT_ID);
         $authMode = $this->config->getAuthorizationMode($storeId);
-        $redirectPaymentMethodSpecificInput->setRequiresApproval($authMode !== Config::AUTHORIZATION_MODE_SALE);
+        if ($paymentProductId && $paymentProductId === PaymentProductsDetailsInterface::MEALVOUCHERS_PRODUCT_ID) {
+            $redirectPaymentMethodSpecificInput->setRequiresApproval(false);
+        } else {
+            $redirectPaymentMethodSpecificInput->setRequiresApproval($authMode !== Config::AUTHORIZATION_MODE_SALE);
+        }
         $redirectPaymentMethodSpecificInput->setPaymentOption($this->config->getOneyPaymentOption($storeId));
 
         $paymentProduct5408SI = $this->paymentProduct5408SIFactory->create();

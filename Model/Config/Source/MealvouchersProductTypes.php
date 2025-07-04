@@ -12,6 +12,8 @@ class MealvouchersProductTypes extends AbstractSource
     public const HOME_AND_GARDEN = 'HomeAndGarden';
     public const GIFT_AND_FLOWERS = 'GiftAndFlowers';
 
+    public const MERGED_PRODUCT_CODE = 'Merged item';
+
     public const MEALVOUCHERS_ATTRIBUTE_CODE = 'worldline_mealvouchers_product_type';
 
     public function getAllOptions(): array
