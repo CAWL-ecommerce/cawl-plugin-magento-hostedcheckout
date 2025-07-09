@@ -13,6 +13,10 @@ This solution is also included into:
 
 ### Change log:
 
+#### 1.1.8
+- Add compatibility with PHP 8.4
+- Update SDK version
+
 #### 1.1.7
 - Updated the core CAWL module to version 1.1.6
 
