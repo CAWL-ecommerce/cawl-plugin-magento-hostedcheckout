@@ -143,7 +143,7 @@ class LineItemBuilder
 
         foreach ($lineItems as $lineItem) {
             $totalAmount += $lineItem->getAmountOfMoney()->getAmount();
-            $productPrice += $lineItem->getOrderLineDetails()->getProductPrice();
+            $productPrice += $lineItem->getOrderLineDetails()->getProductPrice() * $lineItem->getOrderLineDetails()->getQuantity();
             $totalDiscount += $lineItem->getOrderLineDetails()->getDiscountAmount();
             $totalTax += $lineItem->getOrderLineDetails()->getTaxAmount();
         }
@@ -201,11 +201,14 @@ class LineItemBuilder
 
         foreach ($products as $product) {
             $type = $product->getOrderLineDetails()->getProductType();
-            if (!isset($typeCounts[$type])) {
-                $typeCounts[$type] = 0;
-            }
-            $typeCounts[$type]++;
             $names[] = $product->getOrderLineDetails()->getProductName();
+            if ($type !== null) {
+                $type = MealvouchersProductTypes::optionsMap()[$type];
+                if (!isset($typeCounts[$type])) {
+                    $typeCounts[$type] = 0;
+                }
+                $typeCounts[$type] += (int) $product->getOrderLineDetails()->getQuantity();
+            }
         }
 
         // Create a string like "Product A + Product B + Product C"

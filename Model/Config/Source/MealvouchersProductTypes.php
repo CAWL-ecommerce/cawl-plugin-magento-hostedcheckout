@@ -16,6 +16,17 @@ class MealvouchersProductTypes extends AbstractSource
 
     public const MEALVOUCHERS_ATTRIBUTE_CODE = 'worldline_mealvouchers_product_type';
 
+    /**
+     * @return string[]
+     */
+    public static function optionsMap() {
+        return [
+            self::FOOD_AND_DRINK => 'Food and drink',
+            self::HOME_AND_GARDEN => 'Home and garden',
+            self::GIFT_AND_FLOWERS => 'Gifts and flowers',
+        ];
+    }
+
     public function getAllOptions(): array
     {
         return [
