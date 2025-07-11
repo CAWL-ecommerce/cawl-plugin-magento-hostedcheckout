@@ -144,7 +144,7 @@ class LineItemBuilder
         foreach ($lineItems as $lineItem) {
             $totalAmount += $lineItem->getAmountOfMoney()->getAmount();
             $productPrice += $lineItem->getOrderLineDetails()->getProductPrice() * $lineItem->getOrderLineDetails()->getQuantity();
-            $totalDiscount += $lineItem->getOrderLineDetails()->getDiscountAmount();
+            $totalDiscount += $lineItem->getOrderLineDetails()->getDiscountAmount() * $lineItem->getOrderLineDetails()->getQuantity();
             $totalTax += $lineItem->getOrderLineDetails()->getTaxAmount();
         }
 
