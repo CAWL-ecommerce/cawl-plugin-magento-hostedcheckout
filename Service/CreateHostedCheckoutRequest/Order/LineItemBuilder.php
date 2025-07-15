@@ -117,7 +117,7 @@ class LineItemBuilder
         $orderLineDetails->setQuantity(1);
         $orderLineDetails->setProductName($this->getMergedProductName($lineItems));
         $orderLineDetails->setProductType($this->getMergedProductType($lineItems));
-        $orderLineDetails->setProductCode(MealvouchersProductTypes::MERGED_PRODUCT_CODE);
+        $orderLineDetails->setProductCode($this->getProductCode($lineItems));
 
         $amount = $this->amountOfMoneyFactory->create();
         $amount->setAmount($amounts['totalAmount']);
@@ -187,6 +187,20 @@ class LineItemBuilder
 
         // Default fallback (GiftAndFlowers)
         return MealvouchersProductTypes::GIFT_AND_FLOWERS;
+    }
+
+    /**
+     * @param array $products
+     *
+     * @return string
+     */
+    private function getProductCode(array $products): string
+    {
+        if (count($products) === 1) {
+            return $products[0]->getOrderLineDetails()->getProductCode();
+        }
+
+        return MealvouchersProductTypes::MERGED_PRODUCT_CODE;
     }
 
     /**
