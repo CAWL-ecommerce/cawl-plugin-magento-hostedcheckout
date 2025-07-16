@@ -39,11 +39,8 @@ class ReplacePaymentAction
      */
     public function afterGetConfigPaymentAction(Adapter $subject, ?string $result = null): ?string
     {
-        if ($subject->getCode() === self::WORLD_LINE_CHEQUE_VACANCES_ONLINE_METHOD) {
-            return Config::AUTHORIZE_CAPTURE;
-        }
-
-        if ($subject->getCode() === ShoppingCartDataBuilder::WORLD_LINE_MEAL_VAUCHER_METHOD) {
+        if ($subject->getCode() === self::WORLD_LINE_CHEQUE_VACANCES_ONLINE_METHOD ||
+            $subject->getCode() === ShoppingCartDataBuilder::WORLD_LINE_MEAL_VAUCHER_METHOD) {
             return Config::AUTHORIZE_CAPTURE;
         }
 
