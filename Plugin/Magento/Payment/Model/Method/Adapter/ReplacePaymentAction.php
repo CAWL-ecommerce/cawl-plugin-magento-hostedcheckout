@@ -6,11 +6,13 @@ namespace Cawl\HostedCheckout\Plugin\Magento\Payment\Model\Method\Adapter;
 use Magento\Payment\Model\Method\Adapter;
 use Cawl\HostedCheckout\Model\Config\PaymentActionReplaceHandlerInterface;
 use Cawl\HostedCheckout\Model\Data\OrderPaymentContainer;
-use Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\Order\ShoppingCartDataBuilder;
 use Cawl\HostedCheckout\Gateway\Config\Config;
+use Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\Order\ShoppingCartDataBuilder;
 
 class ReplacePaymentAction
 {
+    public const WORLD_LINE_CHEQUE_VACANCES_ONLINE_METHOD = 'worldline_redirect_payment_5403';
+
     /**
      * @var PaymentActionReplaceHandlerInterface[]
      */
@@ -37,6 +39,10 @@ class ReplacePaymentAction
      */
     public function afterGetConfigPaymentAction(Adapter $subject, ?string $result = null): ?string
     {
+        if ($subject->getCode() === self::WORLD_LINE_CHEQUE_VACANCES_ONLINE_METHOD) {
+            return Config::AUTHORIZE_CAPTURE;
+        }
+
         if ($subject->getCode() === ShoppingCartDataBuilder::WORLD_LINE_MEAL_VAUCHER_METHOD) {
             return Config::AUTHORIZE_CAPTURE;
         }
