@@ -13,6 +13,10 @@ This solution is also included into:
 
 ### Change log:
 
+#### 1.1.10
+- Add Mealvoucher payment product
+- Add CVCO (Cheque Vacances Connect Online) payment product
+
 #### 1.1.9
 - Add Mealvoucher payment product
 - Add CVCO (Cheque Vacances Connect Online) payment product
