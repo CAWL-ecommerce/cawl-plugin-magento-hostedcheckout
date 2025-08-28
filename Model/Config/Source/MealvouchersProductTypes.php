@@ -19,7 +19,8 @@ class MealvouchersProductTypes extends AbstractSource
     /**
      * @return string[]
      */
-    public static function optionsMap() {
+    public function optionsMap(): array
+    {
         return [
             self::FOOD_AND_DRINK => 'Food and drink',
             self::HOME_AND_GARDEN => 'Home and garden',
