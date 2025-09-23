@@ -3,11 +3,16 @@ declare(strict_types=1);
 
 namespace Cawl\HostedCheckout\Plugin\Magento\Payment\Model\Method\Adapter;
 
+use Cawl\PaymentCore\Api\Data\PaymentInterface;
+use Cawl\PaymentCore\Api\PaymentRepositoryInterface;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Payment\Model\Method\Adapter;
 use Cawl\HostedCheckout\Model\Config\PaymentActionReplaceHandlerInterface;
 use Cawl\HostedCheckout\Model\Data\OrderPaymentContainer;
 use Cawl\HostedCheckout\Gateway\Config\Config;
 use Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\Order\ShoppingCartDataBuilder;
+use Magento\Sales\Model\Order\Interceptor;
+use Magento\Sales\Model\Order\Payment;
 
 class ReplacePaymentAction
 {
@@ -23,10 +28,20 @@ class ReplacePaymentAction
      */
     private $orderPaymentContainer;
 
-    public function __construct(OrderPaymentContainer $orderPaymentContainer, $handlers = [])
+    /**
+     * @var PaymentRepositoryInterface
+     */
+    private $wlPaymentRepository;
+
+    public function __construct(
+        OrderPaymentContainer $orderPaymentContainer,
+        PaymentRepositoryInterface $wlPaymentRepository,
+        $handlers = []
+    )
     {
         $this->handlers = $handlers;
         $this->orderPaymentContainer = $orderPaymentContainer;
+        $this->wlPaymentRepository = $wlPaymentRepository;
     }
 
     /**
@@ -44,6 +59,10 @@ class ReplacePaymentAction
             return Config::AUTHORIZE_CAPTURE;
         }
 
+        if ($this->isOrderWithDiscrepancy($subject)) {
+            return Config::AUTHORIZE;
+        }
+
         if (!$payment = $this->orderPaymentContainer->getPayment()) {
             return $result;
         }
@@ -59,5 +78,39 @@ class ReplacePaymentAction
         }
 
         return $result;
+    }
+
+    /**
+     * @param Adapter $subject
+     *
+     * @return bool
+     * @throws LocalizedException
+     */
+    private function isOrderWithDiscrepancy(Adapter $subject): bool
+    {
+        $payment = $subject->getInfoInstance();
+
+        if ($payment instanceof Payment) {
+            $order = $payment->getOrder();
+            $incrementId = $order->getIncrementId();
+            $wlPayment = $this->wlPaymentRepository->get($incrementId);
+
+            return $this->compareAmounts($order, $wlPayment);
+        }
+
+        return false;
+    }
+
+    /**
+     * @param Interceptor $order
+     * @param PaymentInterface $payment
+     *
+     * @return bool
+     */
+    private function compareAmounts(Interceptor $order, $payment): bool
+    {
+        $paidAmount = (float)$payment->getAmount()/100;
+
+        return $order->getGrandTotal() !== $paidAmount;
     }
 }

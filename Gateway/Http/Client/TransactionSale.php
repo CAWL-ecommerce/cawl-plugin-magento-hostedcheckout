@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Cawl\HostedCheckout\Gateway\Http\Client;
 
+use Cawl\PaymentCore\Api\Config\GeneralSettingsConfigInterface;
 use Magento\Framework\Exception\LocalizedException;
 use OnlinePayments\Sdk\Domain\GetHostedCheckoutResponse;
 use Psr\Log\LoggerInterface;
@@ -17,10 +18,16 @@ class TransactionSale extends AbstractTransaction
      */
     private $request;
 
-    public function __construct(LoggerInterface $logger, GetHostedCheckoutStatusService $request)
+    /**
+     * @var GeneralSettingsConfigInterface
+     */
+    private $generalSettings;
+
+    public function __construct(LoggerInterface $logger, GetHostedCheckoutStatusService $request, GeneralSettingsConfigInterface $generalSettings)
     {
         parent::__construct($logger);
         $this->request = $request;
+        $this->generalSettings = $generalSettings;
     }
 
     /**
@@ -66,7 +73,10 @@ class TransactionSale extends AbstractTransaction
                 'transaction_amount_of_money' => $transactionAmount,
                 'order_amount_of_money' => $orderAmount,
             ]);
-            throw new LocalizedException(__('Wrong amount'));
+
+            if (!$this->generalSettings->isAmountDiscrepancyEnabled()) {
+                throw new LocalizedException(__('Wrong amount'));
+            }
         }
     }
 }
