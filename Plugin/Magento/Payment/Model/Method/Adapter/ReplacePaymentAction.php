@@ -5,6 +5,7 @@ namespace Cawl\HostedCheckout\Plugin\Magento\Payment\Model\Method\Adapter;
 
 use Cawl\PaymentCore\Api\Data\PaymentInterface;
 use Cawl\PaymentCore\Api\PaymentRepositoryInterface;
+use Cawl\PaymentCore\Model\Order\ValidatorPool\DiscrepancyValidator;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Payment\Model\Method\Adapter;
 use Cawl\HostedCheckout\Model\Config\PaymentActionReplaceHandlerInterface;
@@ -33,15 +34,22 @@ class ReplacePaymentAction
      */
     private $wlPaymentRepository;
 
+    /**
+     * @var DiscrepancyValidator
+     */
+    private $discrepancyValidator;
+
     public function __construct(
         OrderPaymentContainer $orderPaymentContainer,
         PaymentRepositoryInterface $wlPaymentRepository,
+        DiscrepancyValidator $discrepancyValidator,
         $handlers = []
     )
     {
         $this->handlers = $handlers;
         $this->orderPaymentContainer = $orderPaymentContainer;
         $this->wlPaymentRepository = $wlPaymentRepository;
+        $this->discrepancyValidator = $discrepancyValidator;
     }
 
     /**
@@ -95,22 +103,9 @@ class ReplacePaymentAction
             $incrementId = $order->getIncrementId();
             $wlPayment = $this->wlPaymentRepository->get($incrementId);
 
-            return $this->compareAmounts($order, $wlPayment);
+            return $this->discrepancyValidator->compareAmounts($order->getGrandTotal(), $wlPayment);
         }
 
         return false;
-    }
-
-    /**
-     * @param Interceptor $order
-     * @param PaymentInterface $payment
-     *
-     * @return bool
-     */
-    private function compareAmounts(Interceptor $order, $payment): bool
-    {
-        $paidAmount = (float)$payment->getAmount()/100;
-
-        return $order->getGrandTotal() !== $paidAmount;
     }
 }
