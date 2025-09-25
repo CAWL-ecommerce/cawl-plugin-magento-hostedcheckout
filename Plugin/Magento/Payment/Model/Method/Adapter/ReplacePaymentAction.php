@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Cawl\HostedCheckout\Plugin\Magento\Payment\Model\Method\Adapter;
 
-use Cawl\PaymentCore\Api\Data\PaymentInterface;
-use Cawl\PaymentCore\Api\PaymentRepositoryInterface;
 use Cawl\PaymentCore\Model\Order\ValidatorPool\DiscrepancyValidator;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Payment\Model\Method\Adapter;
@@ -12,7 +10,6 @@ use Cawl\HostedCheckout\Model\Config\PaymentActionReplaceHandlerInterface;
 use Cawl\HostedCheckout\Model\Data\OrderPaymentContainer;
 use Cawl\HostedCheckout\Gateway\Config\Config;
 use Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\Order\ShoppingCartDataBuilder;
-use Magento\Sales\Model\Order\Interceptor;
 use Magento\Sales\Model\Order\Payment;
 
 class ReplacePaymentAction
@@ -30,25 +27,18 @@ class ReplacePaymentAction
     private $orderPaymentContainer;
 
     /**
-     * @var PaymentRepositoryInterface
-     */
-    private $wlPaymentRepository;
-
-    /**
      * @var DiscrepancyValidator
      */
     private $discrepancyValidator;
 
     public function __construct(
         OrderPaymentContainer $orderPaymentContainer,
-        PaymentRepositoryInterface $wlPaymentRepository,
         DiscrepancyValidator $discrepancyValidator,
         $handlers = []
     )
     {
         $this->handlers = $handlers;
         $this->orderPaymentContainer = $orderPaymentContainer;
-        $this->wlPaymentRepository = $wlPaymentRepository;
         $this->discrepancyValidator = $discrepancyValidator;
     }
 
@@ -101,9 +91,8 @@ class ReplacePaymentAction
         if ($payment instanceof Payment) {
             $order = $payment->getOrder();
             $incrementId = $order->getIncrementId();
-            $wlPayment = $this->wlPaymentRepository->get($incrementId);
 
-            return $this->discrepancyValidator->compareAmounts($order->getGrandTotal(), $wlPayment);
+            return $this->discrepancyValidator->compareAmounts((float)$order->getGrandTotal(), $incrementId);
         }
 
         return false;
