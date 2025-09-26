@@ -3,11 +3,14 @@ declare(strict_types=1);
 
 namespace Cawl\HostedCheckout\Plugin\Magento\Payment\Model\Method\Adapter;
 
+use Cawl\PaymentCore\Model\Order\ValidatorPool\DiscrepancyValidator;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Payment\Model\Method\Adapter;
 use Cawl\HostedCheckout\Model\Config\PaymentActionReplaceHandlerInterface;
 use Cawl\HostedCheckout\Model\Data\OrderPaymentContainer;
 use Cawl\HostedCheckout\Gateway\Config\Config;
 use Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\Order\ShoppingCartDataBuilder;
+use Magento\Sales\Model\Order\Payment;
 
 class ReplacePaymentAction
 {
@@ -23,10 +26,20 @@ class ReplacePaymentAction
      */
     private $orderPaymentContainer;
 
-    public function __construct(OrderPaymentContainer $orderPaymentContainer, $handlers = [])
+    /**
+     * @var DiscrepancyValidator
+     */
+    private $discrepancyValidator;
+
+    public function __construct(
+        OrderPaymentContainer $orderPaymentContainer,
+        DiscrepancyValidator $discrepancyValidator,
+        $handlers = []
+    )
     {
         $this->handlers = $handlers;
         $this->orderPaymentContainer = $orderPaymentContainer;
+        $this->discrepancyValidator = $discrepancyValidator;
     }
 
     /**
@@ -44,6 +57,10 @@ class ReplacePaymentAction
             return Config::AUTHORIZE_CAPTURE;
         }
 
+        if ($this->isOrderWithDiscrepancy($subject)) {
+            return Config::AUTHORIZE;
+        }
+
         if (!$payment = $this->orderPaymentContainer->getPayment()) {
             return $result;
         }
@@ -59,5 +76,25 @@ class ReplacePaymentAction
         }
 
         return $result;
+    }
+
+    /**
+     * @param Adapter $subject
+     *
+     * @return bool
+     * @throws LocalizedException
+     */
+    private function isOrderWithDiscrepancy(Adapter $subject): bool
+    {
+        $payment = $subject->getInfoInstance();
+
+        if ($payment instanceof Payment) {
+            $order = $payment->getOrder();
+            $incrementId = $order->getIncrementId();
+
+            return $this->discrepancyValidator->compareAmounts((float)$order->getGrandTotal(), $incrementId);
+        }
+
+        return false;
     }
 }
