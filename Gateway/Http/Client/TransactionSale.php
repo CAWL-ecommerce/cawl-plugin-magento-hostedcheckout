@@ -74,7 +74,15 @@ class TransactionSale extends AbstractTransaction
                 'order_amount_of_money' => $orderAmount,
             ]);
 
+            $this->logger->warning(__('Order with amount discrepancy created'), [
+                'quote_id' => $paymentOutput->getMerchantParameters(),
+                'order_amount' => $orderAmount,
+                'paid_amount' => $transactionAmount,
+                'discrepancy' => $transactionAmount - $orderAmount
+            ]);
+
             if (!$this->generalSettings->isAmountDiscrepancyEnabled()) {
+                $this->logger->info(__('Skipping order creation due to amount discrepancy'), []);
                 throw new LocalizedException(__('Wrong amount'));
             }
         }
