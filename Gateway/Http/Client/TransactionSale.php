@@ -23,8 +23,11 @@ class TransactionSale extends AbstractTransaction
      */
     private $generalSettings;
 
-    public function __construct(LoggerInterface $logger, GetHostedCheckoutStatusService $request, GeneralSettingsConfigInterface $generalSettings)
-    {
+    public function __construct(
+        LoggerInterface $logger,
+        GetHostedCheckoutStatusService $request,
+        GeneralSettingsConfigInterface $generalSettings
+    ) {
         parent::__construct($logger);
         $this->request = $request;
         $this->generalSettings = $generalSettings;

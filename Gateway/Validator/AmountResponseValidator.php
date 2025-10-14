@@ -57,6 +57,8 @@ class AmountResponseValidator extends AbstractValidator
         $currency = (string) $validationSubject['payment']->getPayment()->getOrder()->getOrderCurrencyCode();
         $orderAmountOfMoney = $this->amountFormatter->formatToInteger($totalAmount, $currency);
 
-        return $this->createResult($this->generalSettings->isAmountDiscrepancyEnabled() || $transactionAmountOfMoney === $orderAmountOfMoney);
+        return $this->createResult(
+            $this->generalSettings->isAmountDiscrepancyEnabled() || $transactionAmountOfMoney === $orderAmountOfMoney
+        );
     }
 }
