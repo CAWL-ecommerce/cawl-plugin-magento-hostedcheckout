@@ -35,8 +35,7 @@ class ReplacePaymentAction
         OrderPaymentContainer $orderPaymentContainer,
         DiscrepancyValidator $discrepancyValidator,
         $handlers = []
-    )
-    {
+    ) {
         $this->handlers = $handlers;
         $this->orderPaymentContainer = $orderPaymentContainer;
         $this->discrepancyValidator = $discrepancyValidator;
