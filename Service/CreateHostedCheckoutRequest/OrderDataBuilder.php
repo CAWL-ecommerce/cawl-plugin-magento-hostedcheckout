@@ -4,10 +4,12 @@ declare(strict_types=1);
 namespace Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest;
 
 use Magento\Framework\Event\ManagerInterface;
-use Magento\Payment\Gateway\Config\Config;
+use Magento\Framework\Locale\Resolver;
 use Magento\Quote\Api\Data\CartInterface;
+use Magento\Store\Model\StoreManagerInterface;
 use OnlinePayments\Sdk\Domain\Order;
 use OnlinePayments\Sdk\Domain\ShoppingCart;
+use OnlinePayments\Sdk\Domain\Customer;
 use Cawl\HostedCheckout\Model\MealvouchersProductTypeBuilder;
 use Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\Order\ShoppingCartDataBuilder;
 use Cawl\HostedCheckout\Ui\ConfigProvider;
@@ -15,6 +17,8 @@ use Cawl\PaymentCore\Api\Config\GeneralSettingsConfigInterface;
 use Cawl\PaymentCore\Api\MethodNameExtractorInterface;
 use Cawl\PaymentCore\Api\Service\CreateRequest\Order\GeneralDataBuilderInterface;
 use Cawl\PaymentCore\Api\Service\CreateRequest\Order\SurchargeDataBuilderInterface;
+use Cawl\HostedCheckout\Gateway\Config\Config;
+use Cawl\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
 
 class OrderDataBuilder
 {
@@ -55,14 +59,28 @@ class OrderDataBuilder
      */
     private $configProviders;
 
+    /**
+     * @var StoreManagerInterface
+     */
+    private $storeManager;
+
+    /** @var Config */
+    private $hostedConfig;
+
+    /** @var Resolver */
+    private $localeResolver;
+
     public function __construct(
-        ManagerInterface $eventManager,
-        MethodNameExtractorInterface $methodNameExtractor,
-        GeneralDataBuilderInterface $generalOrderDataBuilder,
-        ShoppingCartDataBuilder $shoppingCartDataBuilder,
-        SurchargeDataBuilderInterface $surchargeDataBuilder,
-        GeneralSettingsConfigInterface $generalSettings,
-        array $configProviders = []
+        ManagerInterface                                $eventManager,
+        MethodNameExtractorInterface                    $methodNameExtractor,
+        GeneralDataBuilderInterface                     $generalOrderDataBuilder,
+        ShoppingCartDataBuilder                         $shoppingCartDataBuilder,
+        SurchargeDataBuilderInterface                   $surchargeDataBuilder,
+        GeneralSettingsConfigInterface                  $generalSettings,
+        StoreManagerInterface                           $storeManager,
+        Config $hostedConfig,
+        Resolver                                        $localeResolver,
+        array                                           $configProviders = []
     ) {
         $this->eventManager = $eventManager;
         $this->methodNameExtractor = $methodNameExtractor;
@@ -70,6 +88,9 @@ class OrderDataBuilder
         $this->shoppingCartDataBuilder = $shoppingCartDataBuilder;
         $this->surchargeDataBuilder = $surchargeDataBuilder;
         $this->generalSettings = $generalSettings;
+        $this->storeManager = $storeManager;
+        $this->hostedConfig = $hostedConfig;
+        $this->localeResolver = $localeResolver;
         $this->configProviders = $configProviders;
     }
 
@@ -89,6 +110,11 @@ class OrderDataBuilder
         $args = ['quote' => $quote, self::ORDER_DATA => $order];
         $this->eventManager->dispatch(ConfigProvider::HC_CODE . '_order_data_builder', $args);
 
+        $paymentProductId = (int)$quote->getPayment()->getAdditionalInformation('selected_payment_product');
+        if ($paymentProductId === PaymentProductsDetailsInterface::PLEDG_PRODUCT_ID) {
+            $this->applyPledgData($order, $quote);
+        }
+
         if (!$config instanceof Config || !$config->isCartLines($storeId)) {
             return $order;
         }
@@ -103,5 +129,51 @@ class OrderDataBuilder
         }
 
         return $order;
+    }
+
+    private function applyPledgData(Order $order, CartInterface $quote): void
+    {
+        $billing = $quote->getBillingAddress();
+        $storeId = (int)$quote->getStoreId();
+
+        $customer = $order->getCustomer();
+        if (!$customer) {
+            $customer = new Customer();
+            $order->setCustomer($customer);
+        }
+
+        $customer->setMerchantCustomerId(
+            $quote->getCustomerId() ?: ('guest-' . $quote->getId())
+        );
+
+        $customer->getContactDetails()->setEmailAddress(
+            $quote->getCustomerEmail()
+        );
+
+        $name = $customer->getPersonalInformation()->getName();
+        $name->setFirstName($billing->getFirstname());
+        $name->setSurname($billing->getLastname());
+
+        $billingInput = $customer->getBillingAddress();
+        $billingInput->setCountryCode($billing->getCountryId());
+        $billingInput->setCity($billing->getCity());
+        $billingInput->setZip($billing->getPostcode());
+        $billingInput->setStreet($billing->getStreetLine(1) ?: '');
+
+        $customer->setBillingAddress($billingInput);
+
+        $locale = $this->localeResolver->getLocale();
+        $customer->setLocale($locale);
+
+        $descriptor = $this->hostedConfig->getValue(
+            'fixed_soft_descriptor',
+            $storeId
+        );
+
+        if (!$descriptor) {
+            $descriptor = $this->storeManager->getStore($storeId)->getName();
+        }
+
+        $order->getReferences()->setDescriptor(substr($descriptor, 0, 15));
     }
 }
