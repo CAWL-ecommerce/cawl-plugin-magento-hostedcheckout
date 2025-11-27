@@ -115,6 +115,17 @@ class OrderDataBuilder
             $this->applyPledgData($order, $quote);
         }
 
+        if (!$paymentProductId) {
+            $descriptor = $this->hostedConfig->getValue(
+                'fixed_soft_descriptor',
+                $storeId
+            );
+
+            $references = $order->getReferences() ?? new OrderReferences();
+            $references->setDescriptor($descriptor);
+            $order->setReferences($references);
+        }
+
         if (!$config instanceof Config || !$config->isCartLines($storeId)) {
             return $order;
         }
