@@ -6,20 +6,21 @@ namespace Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest;
 use Magento\Framework\Event\ManagerInterface;
 use Magento\Framework\Locale\Resolver;
 use Magento\Quote\Api\Data\CartInterface;
-use Magento\Store\Model\StoreManagerInterface;
 use OnlinePayments\Sdk\Domain\Order;
-use OnlinePayments\Sdk\Domain\ShoppingCart;
 use OnlinePayments\Sdk\Domain\Customer;
-use Cawl\HostedCheckout\Model\MealvouchersProductTypeBuilder;
+use OnlinePayments\Sdk\Domain\OrderReferences;
+use Cawl\HostedCheckout\Gateway\Config\Config;
 use Cawl\HostedCheckout\Service\CreateHostedCheckoutRequest\Order\ShoppingCartDataBuilder;
 use Cawl\HostedCheckout\Ui\ConfigProvider;
 use Cawl\PaymentCore\Api\Config\GeneralSettingsConfigInterface;
+use Cawl\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
 use Cawl\PaymentCore\Api\MethodNameExtractorInterface;
 use Cawl\PaymentCore\Api\Service\CreateRequest\Order\GeneralDataBuilderInterface;
 use Cawl\PaymentCore\Api\Service\CreateRequest\Order\SurchargeDataBuilderInterface;
-use Cawl\HostedCheckout\Gateway\Config\Config;
-use Cawl\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
 
+/**
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class OrderDataBuilder
 {
     public const ORDER_DATA = 'order_data';
@@ -59,11 +60,6 @@ class OrderDataBuilder
      */
     private $configProviders;
 
-    /**
-     * @var StoreManagerInterface
-     */
-    private $storeManager;
-
     /** @var Config */
     private $hostedConfig;
 
@@ -71,16 +67,15 @@ class OrderDataBuilder
     private $localeResolver;
 
     public function __construct(
-        ManagerInterface                                $eventManager,
-        MethodNameExtractorInterface                    $methodNameExtractor,
-        GeneralDataBuilderInterface                     $generalOrderDataBuilder,
-        ShoppingCartDataBuilder                         $shoppingCartDataBuilder,
-        SurchargeDataBuilderInterface                   $surchargeDataBuilder,
-        GeneralSettingsConfigInterface                  $generalSettings,
-        StoreManagerInterface                           $storeManager,
-        Config $hostedConfig,
-        Resolver                                        $localeResolver,
-        array                                           $configProviders = []
+        ManagerInterface                                 $eventManager,
+        MethodNameExtractorInterface                     $methodNameExtractor,
+        GeneralDataBuilderInterface                      $generalOrderDataBuilder,
+        ShoppingCartDataBuilder                          $shoppingCartDataBuilder,
+        SurchargeDataBuilderInterface                    $surchargeDataBuilder,
+        GeneralSettingsConfigInterface                   $generalSettings,
+        Config                                           $hostedConfig,
+        Resolver                                         $localeResolver,
+        array                                            $configProviders = []
     ) {
         $this->eventManager = $eventManager;
         $this->methodNameExtractor = $methodNameExtractor;
@@ -88,7 +83,6 @@ class OrderDataBuilder
         $this->shoppingCartDataBuilder = $shoppingCartDataBuilder;
         $this->surchargeDataBuilder = $surchargeDataBuilder;
         $this->generalSettings = $generalSettings;
-        $this->storeManager = $storeManager;
         $this->hostedConfig = $hostedConfig;
         $this->localeResolver = $localeResolver;
         $this->configProviders = $configProviders;
@@ -182,7 +176,7 @@ class OrderDataBuilder
         );
 
         if (!$descriptor) {
-            $descriptor = $this->storeManager->getStore($storeId)->getName();
+            $descriptor = $quote->getStore()->getName();
         }
 
         $order->getReferences()->setDescriptor(substr($descriptor, 0, 15));
