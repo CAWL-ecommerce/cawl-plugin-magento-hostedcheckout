@@ -13,6 +13,9 @@ This solution is also included into:
 
 ### Change log:
 
+#### 1.1.22
+- Fix issues with amount discrepancy feature
+
 #### 1.1.21
 - Add configuration for automatic registration of webhook URLs
 
