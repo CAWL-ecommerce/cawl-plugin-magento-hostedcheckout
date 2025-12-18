@@ -14,6 +14,7 @@ use Cawl\HostedCheckout\Gateway\Config\Config;
 use Cawl\HostedCheckout\Ui\ConfigProvider;
 use Cawl\PaymentCore\Api\Config\GeneralSettingsConfigInterface;
 use Cawl\PaymentCore\Api\Service\CreateRequest\ThreeDSecureDataBuilderInterface;
+use Cawl\PaymentCore\Api\Service\CreateRequest\ThreeDSecureQtyCalculatorInterface;
 use Cawl\PaymentCore\Model\ThreeDSecure\ParamsHandler;
 
 class CardPaymentMethodSIDBuilder
@@ -42,6 +43,11 @@ class CardPaymentMethodSIDBuilder
     private $threeDSecureDataBuilder;
 
     /**
+     * @var ThreeDSecureQtyCalculatorInterface
+     */
+    private $threeDSecureQtyCalculator;
+
+    /**
      * @var TokenManagerInterface
      */
     private $tokenManager;
@@ -56,6 +62,7 @@ class CardPaymentMethodSIDBuilder
         CardPaymentMethodSpecificInputFactory $cardPaymentMethodSpecificInputFactory,
         ManagerInterface $eventManager,
         ThreeDSecureDataBuilderInterface $threeDSecureDataBuilder,
+        ThreeDSecureQtyCalculatorInterface $threeDSecureQtyCalculator,
         TokenManagerInterface $tokenManager,
         GeneralSettingsConfigInterface $generalSettings
     ) {
@@ -63,6 +70,7 @@ class CardPaymentMethodSIDBuilder
         $this->cardPaymentMethodSpecificInputFactory = $cardPaymentMethodSpecificInputFactory;
         $this->eventManager = $eventManager;
         $this->threeDSecureDataBuilder = $threeDSecureDataBuilder;
+        $this->threeDSecureQtyCalculator = $threeDSecureQtyCalculator;
         $this->tokenManager = $tokenManager;
         $this->generalSettings = $generalSettings;
     }
@@ -102,8 +110,11 @@ class CardPaymentMethodSIDBuilder
             $paymentProduct130ThreeDSecure = new PaymentProduct130SpecificThreeDSecure();
 
             $paymentProduct130ThreeDSecure->setUsecase(self::SINGLE_AMOUNT_USE_CASE);
-            $numberOfItems = $quote->getItemsQty() <= self::MAX_SUPPORTED_NUMBER_OF_ITEMS ?
-                $quote->getItemsQty() : self::MAX_SUPPORTED_NUMBER_OF_ITEMS;
+
+            $numberOfItems = min(
+                $this->threeDSecureQtyCalculator->calculateNumberOfItems($quote),
+                self::MAX_SUPPORTED_NUMBER_OF_ITEMS
+            );
             $paymentProduct130ThreeDSecure->setNumberOfItems($numberOfItems);
 
             if (!$this->generalSettings->isAuthExemptionEnabled($storeId)) {
