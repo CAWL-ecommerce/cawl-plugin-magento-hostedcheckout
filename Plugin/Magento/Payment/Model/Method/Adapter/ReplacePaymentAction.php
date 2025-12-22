@@ -87,7 +87,7 @@ class ReplacePaymentAction
     {
         $payment = $subject->getInfoInstance();
 
-        if ($payment instanceof Payment) {
+        if ($payment instanceof Payment && strpos($payment->getMethod(), 'worldline') === 0) {
             $order = $payment->getOrder();
             $incrementId = $order->getIncrementId();
 
