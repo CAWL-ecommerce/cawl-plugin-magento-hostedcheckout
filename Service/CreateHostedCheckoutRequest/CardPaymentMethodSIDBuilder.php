@@ -17,6 +17,9 @@ use Cawl\PaymentCore\Api\Service\CreateRequest\ThreeDSecureDataBuilderInterface;
 use Cawl\PaymentCore\Api\Service\CreateRequest\ThreeDSecureQtyCalculatorInterface;
 use Cawl\PaymentCore\Model\ThreeDSecure\ParamsHandler;
 
+/**
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class CardPaymentMethodSIDBuilder
 {
     const SINGLE_AMOUNT_USE_CASE = 'single-amount';
