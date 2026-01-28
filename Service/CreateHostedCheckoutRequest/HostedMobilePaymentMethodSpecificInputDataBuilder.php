@@ -68,7 +68,7 @@ class HostedMobilePaymentMethodSpecificInputDataBuilder
     }
 
     private function configureThreeDSecure(GPayThreeDSecure $gPayThreeDSecure, int $storeId, float $baseSubtotalAmount):
-    void
+        void
     {
         if (!$this->generalSettings->isEnforceAuthEnabled($storeId)
             && !$this->generalSettings->isAuthExemptionEnabled($storeId)) {
