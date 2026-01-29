@@ -13,6 +13,10 @@ This solution is also included into:
 
 ### Change log:
 
+### 1.1.25
+- Improved exemptions capabilities related to 3DS exemption types
+- Added phone number formatter for sending API requests
+
 ### 1.1.24
 - Remove Mealvouchers logo from checkout page when using "Hosted Checkout (redirect to Worldline)"
 
