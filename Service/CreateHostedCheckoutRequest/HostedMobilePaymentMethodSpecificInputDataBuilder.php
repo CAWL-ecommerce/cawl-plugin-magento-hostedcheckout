@@ -86,10 +86,6 @@ class HostedMobilePaymentMethodSpecificInputDataBuilder
                 $gPayThreeDSecure->setExemptionRequest($threeDSExemptionType);
                 $gPayThreeDSecure->setChallengeIndicator($this->resolveChallengeIndicator($threeDSExemptionType));
             }
-
-            if ($threeDSExemptionType === ParamsHandler::NONE_EXEMPTION_TYPE) {
-                $gPayThreeDSecure->setChallengeIndicator(ParamsHandler::NO_CHALLENGE_REQUESTED_CHALLENGE_INDICATOR);
-            }
         }
     }
 
