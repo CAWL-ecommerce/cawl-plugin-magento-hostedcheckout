@@ -253,7 +253,7 @@ class LineItemBuilder
         $orderLineDetails->setProductCode($item->getSku());
         $orderLineDetails->setProductName($item->getName());
         $this->addProductType($item, $orderLineDetails);
-        $orderLineDetails->setQuantity((float)$item->getQty());
+        $orderLineDetails->setQuantity((int)$item->getQty());
 
         if (floor($item->getQty()) < $item->getQty()) {
             $orderLineDetails->setProductName($item->getName() . ' (quantity ' . $item->getQty() . ')');
@@ -310,7 +310,13 @@ class LineItemBuilder
 
     private function addProductType(CartItemInterface $item, OrderLineDetails $orderLineDetails): void
     {
-        $mealvouchersProductType = $item->getData(MealvouchersProductTypes::MEALVOUCHERS_ATTRIBUTE_CODE);
+        if (!$item->getProduct()) {
+            return;
+        }
+
+        $mealvouchersProductType = $item->getProduct()->getData(
+            MealvouchersProductTypes::MEALVOUCHERS_ATTRIBUTE_CODE
+        );
         if ($mealvouchersProductType && $mealvouchersProductType !== MealvouchersProductTypes::NO) {
             $orderLineDetails->setProductType($mealvouchersProductType);
         }

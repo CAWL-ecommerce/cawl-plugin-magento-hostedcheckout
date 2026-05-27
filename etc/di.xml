@@ -62,6 +62,7 @@
                 <item name="ideal" xsi:type="object">Cawl\HostedCheckout\Model\Config\PaymentAction\IDealHandler\Proxy</item>
                 <item name="wechat_pay" xsi:type="object">Cawl\HostedCheckout\Model\Config\PaymentAction\WechatPayHandler\Proxy</item>
                 <item name="bank_transfer" xsi:type="object">Cawl\HostedCheckout\Model\Config\PaymentAction\BankTransferHandler\Proxy</item>
+                <item name="illicado" xsi:type="object">Cawl\HostedCheckout\Model\Config\PaymentAction\IllicadoHandler\Proxy</item>
                 <item name="linxo_connect" xsi:type="object">Cawl\HostedCheckout\Model\Config\PaymentAction\LinxoConnectHandler\Proxy</item>
             </argument>
         </arguments>

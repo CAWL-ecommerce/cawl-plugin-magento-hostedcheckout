@@ -107,7 +107,7 @@ class OrderDataBuilder
         $this->applyPaymentProductData($quote, $order);
         $this->applyDescriptor($quote, $order, $storeId);
 
-        if (!$config instanceof Config || !$config->isCartLines($storeId)) {
+        if (!$config || !method_exists($config, 'isCartLines') || !$config->isCartLines($storeId)) {
             return $order;
         }
 
@@ -163,9 +163,22 @@ class OrderDataBuilder
         if ($paymentProductId === PaymentProductsDetailsInterface::LINXO_CONNECT_PRODUCT_ID) {
             $this->applyLinxoConnectData($order, $quote);
         }
+
+        if ($paymentProductId === PaymentProductsDetailsInterface::ILLICADO_PRODUCT_ID) {
+            $this->applyIllicadoData($order, $quote);
+        }
+
+        if ($paymentProductId === PaymentProductsDetailsInterface::MEALVOUCHERS_PRODUCT_ID) {
+            $this->applyMealVoucherData($order, $quote);
+        }
     }
 
     private function applyLinxoConnectData(Order $order, CartInterface $quote): void
+    {
+        $this->applyCommonRedirectData($order, $quote);
+    }
+
+    private function applyMealVoucherData(Order $order, CartInterface $quote): void
     {
         $this->applyCommonRedirectData($order, $quote);
     }
@@ -190,6 +203,11 @@ class OrderDataBuilder
         $customer->setBillingAddress($billingInput);
     }
 
+    private function applyIllicadoData(Order $order, CartInterface $quote): void
+    {
+        $this->applyCommonRedirectData($order, $quote);
+    }
+
     private function applyCommonRedirectData(Order $order, CartInterface $quote): void
     {
         $storeId = (int)$quote->getStoreId();
@@ -200,18 +218,14 @@ class OrderDataBuilder
             $order->setCustomer($customer);
         }
 
-        $customer->setMerchantCustomerId(
-            $quote->getCustomerId() ?: ('guest-' . $quote->getId())
-        );
-
-        $customer->getContactDetails()->setEmailAddress(
-            $quote->getCustomerEmail()
-        );
-
+        $customer->setMerchantCustomerId($quote->getCustomerId() ?: ('guest-' . $quote->getId()));
+        $customer->getContactDetails()->setEmailAddress($quote->getCustomerEmail());
         $customer->setLocale($this->localeResolver->getLocale());
 
         $descriptor = $this->hostedConfig->getValue('fixed_soft_descriptor', $storeId) ?: $quote->getStore()->getName();
 
-        $order->getReferences()->setDescriptor(substr($descriptor, 0, 15));
+        $references = $order->getReferences() ?? new OrderReferences();
+        $references->setDescriptor(substr($descriptor, 0, 15));
+        $order->setReferences($references);
     }
 }
