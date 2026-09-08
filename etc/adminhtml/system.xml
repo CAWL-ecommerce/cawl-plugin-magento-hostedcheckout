@@ -176,7 +176,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_group_cards" translate="label comment" type="select" sortOrder="210" showInDefault="1" showInWebsite="1">
+                <field id="enable_group_cards" translate="label comment" type="select" sortOrder="210" showInDefault="1" showInWebsite="1" canRestore="1">
                     <label>Group Cards</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <config_path>payment/worldline_hosted_checkout/enable_group_cards</config_path>
